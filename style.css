@@ -1,0 +1,32 @@
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Classes base para animação */
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); /* Curva suave (ease-out) */
+        }
+        
+        .reveal-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Atraso em cascata para elementos do cabeçalho */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Esconde botões na hora da impressão para um PDF limpo e anula animações */
+        @media print {
+            .no-print { display: none !important; }
+            body { background-color: white; }
+            .print-shadow-none { box-shadow: none !important; border: none !important; }
+            textarea, input { border: 1px solid #e2e8f0 !important; background-color: #f8fafc !important; }
+            /* Garante que tudo aparece no PDF, mesmo que não tenha feito scroll */
+            .reveal-element {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
